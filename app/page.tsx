@@ -7,7 +7,7 @@ export default function Home() {
 		<div className={styles.container}>
 			<h1>Netflix</h1>
 
-			<NavBar username="Madsa" />
+			<NavBar username="akselsenmads@gmail.com" />
 			<Banner
 				title="Clifford the red dog"
 				subTitle="a very cute dog"
