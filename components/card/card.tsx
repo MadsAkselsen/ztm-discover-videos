@@ -2,10 +2,13 @@
 import Image from "next/image";
 import styles from "./card.module.css";
 import { useState } from "react";
+import cls from "classnames";
+import { motion } from "framer-motion";
 
-interface BannerProps {
+interface CardProps {
 	imgUrl: string;
 	size: "large" | "medium" | "small";
+	id: number;
 }
 
 const classMap = {
@@ -14,22 +17,29 @@ const classMap = {
 	small: styles.smItem,
 };
 
-const Card: React.FC<BannerProps> = ({
-	imgUrl = "/static/clifford.webp",
+const Card: React.FC<CardProps> = ({
+	imgUrl = "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1340&q=80",
 	size = "medium",
+	id,
 }) => {
 	const [imgSrc, setImgSrc] = useState(imgUrl);
 
 	// fallback image if there is an error in the image src
 	const handleOnError = () => {
 		console.log("hii error");
-		setImgSrc("/static/clifford.webp");
+		setImgSrc(
+			"https://images.unsplash.com/photo-1485846234645-a62644f84728?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1340&q=80"
+		);
 	};
+
+	const scale = id === 0 ? { scaleY: 1.1 } : { scale: 1.1 };
 
 	return (
 		<div className={styles.container}>
-			Card
-			<div className={classMap[size]}>
+			<motion.div
+				className={cls(styles.imgMotionWrapper, classMap[size])}
+				whileHover={{ ...scale }}
+			>
 				<Image
 					src={imgSrc}
 					alt="image"
@@ -37,7 +47,7 @@ const Card: React.FC<BannerProps> = ({
 					onError={handleOnError}
 					className={styles.cardImg}
 				/>
-			</div>
+			</motion.div>
 		</div>
 	);
 };
