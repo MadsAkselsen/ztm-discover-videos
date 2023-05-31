@@ -1,9 +1,6 @@
+import { Video } from "@/lib/videos";
 import Card from "./card";
 import styles from "./section-cards.module.css";
-
-interface Video {
-	imgUrl: string;
-}
 
 interface SectionCardProps {
 	title: string;
