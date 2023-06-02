@@ -1,6 +1,6 @@
 import videoData from "../data/videos.json";
 
-export const getVideos = (): Video[] => {
+export const getVideos = async (): Promise<Video[]> => {
   return videoData.items.map((item: VideoApiResp) => {
     return {
       title: item.snippet.title,
