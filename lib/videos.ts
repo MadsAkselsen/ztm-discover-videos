@@ -1,10 +1,9 @@
-import videoData from "../data/videos.json";
 
-export const getVideos = async (): Promise<Video[]> => {
+export const getVideos = async (searchQuery: string): Promise<Video[]> => {
   const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
   const response = await fetch(
-    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=disney%20trailer&key=${YOUTUBE_API_KEY}`
+    `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=25&q=${searchQuery}%20trailer&key=${YOUTUBE_API_KEY}`
   );
 
   const data: YoutubeSearchListResp = await response.json();

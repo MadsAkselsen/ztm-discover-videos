@@ -21,7 +21,10 @@ import { getVideos } from "../lib/videos";
 // }
 
 export default async function Home() {
-	const disneyVideos = await getVideos();
+	const disneyVideos = await getVideos("disney trailer");
+	const productivityVideos = await getVideos("productivity");
+	const travelVideos = await getVideos("travel");
+	const popularVideos = await getVideos("popular");
 	console.log({ disneyVideos });
 	
 	return (
@@ -39,9 +42,19 @@ export default async function Home() {
 					size="large"
 				/>
 				<SectionCards
-					title="Disney"
-					videos={disneyVideos}
+					title="Travel"
+					videos={travelVideos}
+					size="small"
+				/>
+				<SectionCards
+					title="Productivity"
+					videos={productivityVideos}
 					size="medium"
+				/>
+				<SectionCards
+					title="Popular"
+					videos={popularVideos}
+					size="small"
 				/>
 			</div>
 		</div>
