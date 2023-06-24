@@ -44,6 +44,7 @@ const Card: React.FC<CardProps> = ({
 					src={imgSrc}
 					alt="image"
 					fill={true}
+					sizes="(max-width: 768px) 100px, (max-width: 1200px) 200px, 200px"
 					onError={handleOnError}
 					className={styles.cardImg}
 				/>
