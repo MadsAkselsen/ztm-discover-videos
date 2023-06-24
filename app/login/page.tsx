@@ -27,13 +27,7 @@ const Login = () => {
 				</div>
 			</header>
 
-			<main className={styles.main}>
-				<div className={styles.mainWrapper}>
-					<h1 className={styles.signinHeader}>Sign In</h1>
-
-					<Inputs />
-				</div>
-			</main>
+			<Inputs />
 		</div>
 	);
 };
