@@ -42,7 +42,7 @@ const NavBar = () => {
 		setShowDropdown(!showDropdown);
 	};
 
-	const handleSignout = async (e) => {
+	const handleSignout = async (e: MouseEvent) => {
 		e.preventDefault();
 
 		try {
