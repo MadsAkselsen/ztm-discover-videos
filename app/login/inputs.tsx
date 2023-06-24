@@ -19,6 +19,7 @@ const Inputs = () => {
 
 	useNavigationEvent(handleComplete);
 
+	//? This is next 12 code. The next 13 implementatio is above (useNavigationEvent hook)
 	// useEffect(() => {
 	// 	const handleComplete = () => {
 	// 		setIsLoading(false);
