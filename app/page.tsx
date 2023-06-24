@@ -2,7 +2,6 @@ import Banner from "../components/banner/banner";
 import NavBar from "../components/nav/navbar";
 import styles from "./page.module.css";
 import SectionCards from "@/components/card/section-cards";
-import { magic } from "../lib/magic-client";
 
 import { getPopularVideos, getVideos } from "../lib/videos";
 // import { GetServerSidePropsContext } from "next";
@@ -28,7 +27,7 @@ export default async function Home() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.main}>
-				<NavBar username="ankita@ank.com" />
+				<NavBar />
 				<Banner
 					title="Clifford the red dog"
 					subTitle="a very cute dog"

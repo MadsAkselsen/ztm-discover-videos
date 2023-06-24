@@ -1,19 +1,31 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import { MouseEvent } from "react";
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { magic } from "../../lib/magic-client";
 
-interface BannerProps {
-	username: string;
-}
-
-const NavBar: React.FC<BannerProps> = ({ username }) => {
+const NavBar = () => {
 	const router = useRouter();
 	const [showDropdown, setShowDropdown] = useState(false);
+	const [username, setUsername] = useState("");
+
+	useEffect(() => {
+		async function getUsername() {
+			try {
+				const { email } = await magic!.user.getMetadata();
+				if (email) {
+					setUsername(email);
+				}
+			} catch (error) {
+				console.log("Error retrieving email:", error);
+			}
+		}
+		getUsername();
+	}, []);
 
 	const handleOnClickHome = (e: MouseEvent) => {
 		e.preventDefault();
@@ -28,6 +40,19 @@ const NavBar: React.FC<BannerProps> = ({ username }) => {
 	const handleShowDropdown = (e: MouseEvent) => {
 		e.preventDefault();
 		setShowDropdown(!showDropdown);
+	};
+
+	const handleSignout = async (e) => {
+		e.preventDefault();
+
+		try {
+			await magic!.user.logout();
+			console.log(await magic!.user.isLoggedIn());
+			router.push("/login");
+		} catch (error) {
+			console.error("Error logging out", error);
+			router.push("/login");
+		}
 	};
 
 	return (
@@ -72,12 +97,12 @@ const NavBar: React.FC<BannerProps> = ({ username }) => {
 						{showDropdown && (
 							<div className={styles.navDropdown}>
 								<div>
-									<Link
+									<a
 										className={styles.linkName}
-										href="/login"
+										onClick={handleSignout}
 									>
 										Sign out
-									</Link>
+									</a>
 									<div className={styles.lineWrapper}></div>
 								</div>
 							</div>
