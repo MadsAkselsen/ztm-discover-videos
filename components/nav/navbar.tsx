@@ -7,11 +7,23 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { magic } from "../../lib/magic-client";
+import { useLoadUser } from "@/app/useLoadUser";
 
 const NavBar = () => {
 	const router = useRouter();
 	const [showDropdown, setShowDropdown] = useState(false);
 	const [username, setUsername] = useState("");
+
+	//hack:
+	// this checks if the user is already logged in when loading the
+	// application. But this code uses hooks, which can only be used
+	// inside client components. This is currently the only place to
+	// run this code.
+
+	// Might be fixed by using a state management library:
+	// https://stackoverflow.com/questions/74262924/how-should-we-use-reacts-context-api-in-next-js-13
+	// https://stackoverflow.com/questions/74992326/does-use-client-in-next-js-13-root-layout-make-whole-routes-client-component/75480826#75480826
+	useLoadUser();
 
 	useEffect(() => {
 		async function getUsername() {
