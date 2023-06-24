@@ -2,6 +2,7 @@
 import styles from "./login.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { magic } from "../../lib/magic-client";
 
 const Inputs = () => {
 	const [email, setEmail] = useState("");
@@ -11,21 +12,32 @@ const Inputs = () => {
 
 	const handleOnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUserMsg("");
-		console.log("event", e);
 		const email = e.target.value;
 		setEmail(email);
 	};
 
 	const handleLoginWithEmail = async (e: React.MouseEvent<HTMLElement>) => {
-		console.log("hi button", email);
 		e.preventDefault();
+
+		if (!magic) return;
 
 		if (email) {
 			if (email === "akselsenmads@gmail.com") {
 				// route to dashboard
-				router.push("/");
+				// router.push("/");
+				try {
+					const didToken = await magic.auth.loginWithMagicLink({
+						email,
+					});
+					if (didToken) {
+						router.push("/");
+					}
+				} catch (error) {
+					// Handle errors if required!
+					console.error("Something went wrong logging in", error);
+				}
 			} else {
-				console.log("Something went wrong logging in");
+				setUserMsg("Something went wrong logging in");
 			}
 		} else {
 			// show user message

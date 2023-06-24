@@ -2,6 +2,7 @@ import Banner from "../components/banner/banner";
 import NavBar from "../components/nav/navbar";
 import styles from "./page.module.css";
 import SectionCards from "@/components/card/section-cards";
+import { magic } from "../lib/magic-client";
 
 import { getPopularVideos, getVideos } from "../lib/videos";
 // import { GetServerSidePropsContext } from "next";
