@@ -23,7 +23,7 @@ const NavBar = () => {
 	// Might be fixed by using a state management library:
 	// https://stackoverflow.com/questions/74262924/how-should-we-use-reacts-context-api-in-next-js-13
 	// https://stackoverflow.com/questions/74992326/does-use-client-in-next-js-13-root-layout-make-whole-routes-client-component/75480826#75480826
-	useLoadUser();
+	// useLoadUser();
 
 	useEffect(() => {
 		async function getUsername() {
