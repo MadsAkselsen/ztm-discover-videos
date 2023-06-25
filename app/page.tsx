@@ -32,6 +32,7 @@ export default async function Home() {
 					title="Clifford the red dog"
 					subTitle="a very cute dog"
 					imgUrl="/static/clifford.webp"
+					videoId={disneyVideos[0].id}
 				/>
 
 				<div className={styles.sectionWrapper}>

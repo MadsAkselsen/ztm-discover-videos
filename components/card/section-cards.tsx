@@ -1,6 +1,7 @@
 import { Video } from "@/lib/videos";
 import Card from "./card";
 import styles from "./section-cards.module.css";
+import Link from "next/link";
 
 interface SectionCardProps {
 	title: string;
@@ -14,13 +15,16 @@ const SectionCards: React.FC<SectionCardProps> = ({ title, videos, size }) => {
 			<h2 className={styles.title}>{title}</h2>
 			<div className={styles.cardWrapper}>
 				{videos.map((video, idx) => {
+					console.log({ video });
 					return (
-						<Card
-							key={idx}
-							id={idx}
-							imgUrl={video.imgUrl}
-							size={size}
-						/>
+						<Link key={idx} href={`/video/${video.id}`}>
+							<Card
+								key={idx}
+								id={idx}
+								imgUrl={video.imgUrl}
+								size={size}
+							/>
+						</Link>
 					);
 				})}
 			</div>

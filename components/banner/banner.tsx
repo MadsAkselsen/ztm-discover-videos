@@ -2,16 +2,25 @@
 
 import Image from "next/image";
 import styles from "./banner.module.css";
+import { useRouter } from "next/navigation";
 
 interface BannerProps {
 	title: string;
 	subTitle: string;
 	imgUrl: string;
+	videoId: string;
 }
 
-const Banner: React.FC<BannerProps> = ({ title, subTitle, imgUrl }) => {
+const Banner: React.FC<BannerProps> = ({
+	title,
+	subTitle,
+	imgUrl,
+	videoId,
+}) => {
+	const router = useRouter();
 	const handleOnPlay = () => {
 		console.log("handleOnPlay");
+		router.push(`video/${videoId}`);
 	};
 	return (
 		<div className={styles.container}>
