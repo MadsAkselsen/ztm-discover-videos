@@ -4,21 +4,48 @@ import styles from "./Video.module.css";
 import Modal from "react-modal";
 import { useRouter } from "next/navigation";
 import clsx from "classnames";
+import { getVideos, getYoutubeVideoById } from "@/lib/videos";
+// import { fetchTest } from "@/app/api/fetchtest";
 
 Modal.setAppElement("body");
 
-const Video = ({ params }: { params: { slug: string } }) => {
-	console.log(params.slug);
+// async function getVideo(videoId: string) {
+	
+// 	// const videoArray = await getYoutubeVideoById(videoId);
+// 	// const video = videoArray[0];
+
+// 	const video = {
+// 		title: "Hi cute dog",
+// 		publishTime: "1990-01-01",
+// 		description:
+// 			"A big red dog",
+// 		channelTitle: "Paramount Pictures",
+// 		viewCount: 10000,
+// 	};
+
+// 	return video
+
+// 	// return res.json();
+// }
+
+interface VideoProps {
+	params: { slug: string },
+	message: string
+}
+
+const Video: ({}: VideoProps) => Promise<JSX.Element> = async ({params, message}) => {
+	console.log("from component ===> ",params.slug, message);
 	const router = useRouter();
 
-	const video = {
-		title: "Hi cute dog",
-		publishTime: "1990-01-01",
-		description:
-			"A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger?",
-		channelTitle: "Paramount Pictures",
-		viewCount: 10000,
-	};
+	const response = await fetch(`http://localhost:3000/api/video/${params.slug}`)
+	console.log("resposne", await response.json())
+	const data = await response.json()
+	const video = data.message
+	// const video = await getVideo(params.slug)
+	// const disneyVideos = await getVideos("disney trailer");
+	// const video = disneyVideos[0]
+
+	
 
 	const { title, publishTime, description, channelTitle, viewCount } = video;
 
