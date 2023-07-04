@@ -5,6 +5,8 @@ import Modal from "react-modal";
 import { useRouter } from "next/navigation";
 import clsx from "classnames";
 import { getVideos, getYoutubeVideoById } from "@/lib/videos";
+import { fetcher } from "@/util";
+import useSWR from "swr";
 // import { fetchTest } from "@/app/api/fetchtest";
 
 Modal.setAppElement("body");
@@ -33,14 +35,21 @@ interface VideoProps {
 	message: string
 }
 
-const Video: ({}: VideoProps) => Promise<JSX.Element> = async ({params, message}) => {
+const Video: React.FC<VideoProps> = ({params, message}) => {
 	console.log("from component ===> ",params.slug, message);
-	const router = useRouter();
+	const { data, error, isLoading } = useSWR(`http://localhost:3000/api/video/${params.slug}`, fetcher)
+	console.log("data ==>", data)
 
-	const response = await fetch(`http://localhost:3000/api/video/${params.slug}`)
-	console.log("resposne", await response.json())
-	const data = await response.json()
-	const video = data.message
+	
+
+	const router = useRouter();
+	if (isLoading) {return <div>Loading data...</div>}
+		const video = data.message
+
+	// const response = await fetch(`http://localhost:3000/api/video/${params.slug}`)
+	// console.log("resposne", await response.json())
+	// const data = await response.json()
+	// const video = data.message
 	// const video = await getVideo(params.slug)
 	// const disneyVideos = await getVideos("disney trailer");
 	// const video = disneyVideos[0]
