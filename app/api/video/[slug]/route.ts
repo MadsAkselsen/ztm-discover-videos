@@ -12,7 +12,7 @@ export async function GET(
     console.log("sort", sort)
     console.log("===> route: ", slug, process.env.YOUTUBE_API_KEY)
 
-    const videoArray = await getYoutubeVideoById(slug);
+    const videoArray = await getYoutubeVideoById(slug, true);
 	const video = videoArray[0];
 
 

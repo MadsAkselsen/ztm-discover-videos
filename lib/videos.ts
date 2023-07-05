@@ -17,6 +17,7 @@ export const getCommonVideos = async (url: string, revalidate?: boolean): Promis
 		return data.items.map((item) => {
 			const id = processId(item);
 			const snippet = item.snippet;
+			console.log(item)
 			return {
 				title: snippet.title,
 				imgUrl: snippet.thumbnails.high.url,
@@ -25,7 +26,6 @@ export const getCommonVideos = async (url: string, revalidate?: boolean): Promis
 				publishTime: snippet.publishedAt,
 				channelTitle: snippet.channelTitle,
 				statistics: item.statistics ? item.statistics : { viewCount: 0 },
-				viewCount: 0
 			};
 		});
 	} catch (error) {
@@ -84,7 +84,12 @@ export interface Video {
 	publishTime: string;
 	description: string;
 	channelTitle: string;
-	viewCount: number;
+	statistics: {
+		viewCount: number,
+		likeCount?: number,
+		favoriteCount?: number,
+		commentCount?: number
+	},
 }
 
 interface VideoApiResp {
@@ -92,7 +97,12 @@ interface VideoApiResp {
 	etag: string;
 	id: Id | string;
 	snippet: Snippet;
-	statistics: any
+	statistics?: {
+		viewCount: number,
+		likeCount?: number,
+		favoriteCount?: number,
+		commentCount?: number
+	},
 }
 
 interface Thumbnail {

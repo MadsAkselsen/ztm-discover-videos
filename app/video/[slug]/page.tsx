@@ -4,7 +4,6 @@ import styles from "./Video.module.css";
 import Modal from "react-modal";
 import { useRouter } from "next/navigation";
 import clsx from "classnames";
-import { getVideos, getYoutubeVideoById } from "@/lib/videos";
 import { fetcher } from "@/util";
 import useSWR from "swr";
 // import { fetchTest } from "@/app/api/fetchtest";
@@ -56,7 +55,7 @@ const Video: React.FC<VideoProps> = ({params, message}) => {
 
 	
 
-	const { title, publishTime, description, channelTitle, viewCount } = video;
+	const { title, publishTime, description, channelTitle, statistics } = video;
 
 	return (
 		<div className={styles.container}>
@@ -107,7 +106,7 @@ const Video: React.FC<VideoProps> = ({params, message}) => {
 									View Count:{" "}
 								</span>
 								<span className={styles.channelTitle}>
-									{viewCount}
+									{statistics.viewCount}
 								</span>
 							</p>
 						</div>
