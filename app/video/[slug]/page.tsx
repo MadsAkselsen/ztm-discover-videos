@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import clsx from "classnames";
 import { fetcher } from "@/util";
 import useSWR from "swr";
+import NavBar from "@/components/nav/navbar";
 // import { fetchTest } from "@/app/api/fetchtest";
 
 Modal.setAppElement("body");
@@ -59,6 +60,7 @@ const Video: React.FC<VideoProps> = ({params, message}) => {
 
 	return (
 		<div className={styles.container}>
+			<NavBar />
 			video page {params.slug}
 			<Modal
 				isOpen={true}
