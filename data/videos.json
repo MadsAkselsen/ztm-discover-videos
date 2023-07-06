@@ -1,5 +1,6 @@
 {
   "kind": "youtube#searchListResponse",
+  "error": "",
   "etag": "SCm-8eeV_mvZIIeBFB4Cmw81UP0",
   "nextPageToken": "CAUQAA",
   "regionCode": "DK",
@@ -15,6 +16,7 @@
         "kind": "youtube#video",
         "videoId": "Aenk14JCVbc"
       },
+      "error": "",
       "snippet": {
         "publishedAt": "2021-04-23T18:27:23Z",
         "channelId": "UCVTyTA7-g9nopHeHbeuvpRA",
@@ -45,6 +47,7 @@
     {
       "kind": "youtube#searchResult",
       "etag": "oD3suVz1PnP2pZO2nuz_7aYWQxc",
+      "error": "",
       "id": {
         "kind": "youtube#video",
         "videoId": "RZTBnlAVfnQ"
@@ -79,6 +82,7 @@
     {
       "kind": "youtube#searchResult",
       "etag": "vVfKCh3wY9FDu4JFawykvcgblds",
+      "error": "",
       "id": {
         "kind": "youtube#video",
         "videoId": "QMW0bwYzaAM"
@@ -113,6 +117,7 @@
     {
       "kind": "youtube#searchResult",
       "etag": "UgwNLZwqxmAOOZ8izxe9xA1Ibuc",
+      "error": "",
       "id": {
         "kind": "youtube#video",
         "videoId": "dX-aMAzhUxI"
@@ -147,6 +152,7 @@
     {
       "kind": "youtube#searchResult",
       "etag": "Grb3t7cRsxGit9TraKguxwyEeb0",
+      "error": "",
       "id": {
         "kind": "youtube#video",
         "videoId": "rbZDB53lZ_4"

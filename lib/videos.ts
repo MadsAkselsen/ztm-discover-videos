@@ -1,17 +1,24 @@
 import videoTestData from "../data/videos.json";
 
-const fetchVideos = async (url: string, revalidate?: boolean): Promise<Video[]> => {
+const fetchVideos = async (url: string, revalidate?: boolean): Promise<YoutubeSearchListResp|null> => {
 	const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 	const BASE_URL = "youtube.googleapis.com/youtube/v3";
   
 	const response = await fetch(
 	  `https://${BASE_URL}/${url}&maxResults=25&key=${YOUTUBE_API_KEY}`
 	);
+
+	const data: YoutubeSearchListResp = await response.json();
+
+	if (data?.error) {
+		console.error("Youtube API error", data.error);
+		return null;
+	}
   
 	return await response.json();
   };
 
-export const getCommonVideos = async (url: string, revalidate?: boolean): Promise<Video[]> => {
+export const getCommonVideos = async (url: string, revalidate?: boolean): Promise<Video[]|null> => {
 	
 	// console.log("getCommonVideos ====>", YOUTUBE_API_KEY)
 
@@ -23,11 +30,10 @@ export const getCommonVideos = async (url: string, revalidate?: boolean): Promis
 
 		console.log({ isDev });
 		console.log("======>", process.env)
-    	const data: YoutubeSearchListResp = isDev ? videoTestData : await fetchVideos(url, revalidate);
+    	const data = isDev ? <YoutubeSearchListResp>videoTestData : await fetchVideos(url, revalidate);
 		// const data: YoutubeSearchListResp = await response.json();
-		if (data?.error) {
-			console.error("Youtube API error", data.error);
-			return [];
+		if (!data) {
+			return null;
 		}
 
 		return data.items.map((item) => {
