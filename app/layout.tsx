@@ -1,3 +1,4 @@
+import { fetchGetUsers } from "@/lib/db/hasura";
 import "./globals.css";
 import { Inter, Roboto_Slab } from "next/font/google";
 
@@ -20,6 +21,7 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+	fetchGetUsers()
 	return (
 		<html lang="en">
 			<body className={roboto.className}>{children}</body>
