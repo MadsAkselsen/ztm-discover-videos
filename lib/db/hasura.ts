@@ -22,7 +22,7 @@ async function queryHasuraGraphQL(operationName: string, variables: any) {
         method: "POST",
         headers: {
             // "x-hasura-admin-secret": process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET!,
-            "Authorization": "Bearer "
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNjg5NDE4NDg2LCJodHRwczovL2hhc3VyYS5pby9qd3QvY2xhaW1zIjp7IngtaGFzdXJhLWRlZmF1bHQtcm9sZSI6InVzZXIiLCJ4LWhhc3VyYS1hbGxvd2VkLXJvbGVzIjpbInVzZXIiLCJhZG1pbiJdLCJ4LWhhc3VyYS11c2VyLWlkIjoibWFkcyJ9fQ.VDHS-PsHpzpNLzkviD9LizJvX2b0pQXvy2luQpDTRfk"
           },
         body: JSON.stringify({
           query: operationsDoc,

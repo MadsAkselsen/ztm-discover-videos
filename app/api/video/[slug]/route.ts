@@ -9,8 +9,8 @@ export async function GET(
     const slug = params.slug // 'a', 'b', or 'c'
     const {searchParams} = request.nextUrl
     const sort = searchParams.get("sort")
-    console.log("sort", sort)
-    console.log("===> route: ", slug, process.env.YOUTUBE_API_KEY)
+    // console.log("sort", sort)
+    // console.log("===> route: ", slug, process.env.YOUTUBE_API_KEY)
 
     const videoArray = await getYoutubeVideoById(slug, true);
 	const video = videoArray[0];
